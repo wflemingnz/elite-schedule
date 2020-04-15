@@ -10,8 +10,4 @@ export class TournamentsPage implements OnInit {
   constructor(private location: Location) {}
 
   ngOnInit() {}
-
-  goBack() {
-    this.location.back();
-  }
 }
