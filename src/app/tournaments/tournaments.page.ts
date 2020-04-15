@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-tournaments',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tournaments.page.scss'],
 })
 export class TournamentsPage implements OnInit {
+  constructor(private location: Location) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  goBack() {
+    this.location.back();
   }
-
 }
