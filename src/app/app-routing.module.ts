@@ -16,7 +16,23 @@ const routes: Routes = [
     path: 'my-teams',
     loadChildren: () =>
       import('./my-teams/my-teams.module').then((m) => m.MyTeamsPageModule),
+  },  {
+    path: 'tournaments',
+    loadChildren: () => import('./tournaments/tournaments.module').then( m => m.TournamentsPageModule)
   },
+  {
+    path: 'teams',
+    loadChildren: () => import('./teams/teams.module').then( m => m.TeamsPageModule)
+  },
+  {
+    path: 'team-detail',
+    loadChildren: () => import('./team-detail/team-detail.module').then( m => m.TeamDetailPageModule)
+  },
+  {
+    path: 'game',
+    loadChildren: () => import('./game/game.module').then( m => m.GamePageModule)
+  },
+
 ];
 
 @NgModule({
