@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-item routerLink="/team-detail" routerDirection="forward"
-    >HC Elite</ion-item
-  >
-  <ion-item routerLink="/team-detail" routerDirection="forward"
-    >Team Takeover</ion-item
+  <ion-item
+    *ngFor="let team of teams"
+    routerLink="/team-detail/{{team.id}}"
+    routerDirection="forward"
+    >{{team.name}}</ion-item
   >
 </ion-content>
