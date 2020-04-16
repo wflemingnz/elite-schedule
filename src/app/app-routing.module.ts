@@ -25,7 +25,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'teams',
+    path: 'teams/:tournamentId',
     loadChildren: () =>
       import('./teams/teams.module').then((m) => m.TeamsPageModule),
   },

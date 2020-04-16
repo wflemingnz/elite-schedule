@@ -12,4 +12,10 @@ export class EliteApiService {
   getTournaments() {
     return this.http.get(`${this.baseUrl}data/tournaments.json`);
   }
+
+  getTournamentTeams(tournamentId: string) {
+    return this.http.get(
+      `${this.baseUrl}data/tournaments-data/${tournamentId}/teams.json`
+    );
+  }
 }

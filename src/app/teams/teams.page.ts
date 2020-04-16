@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TeamsService } from '../services/teams-service';
+import { EliteApiService } from '../services/elite-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-teams',
@@ -7,11 +9,15 @@ import { TeamsService } from '../services/teams-service';
   styleUrls: ['./teams.page.scss'],
 })
 export class TeamsPage implements OnInit {
-  teams: any[];
+  teams$: Observable<any>;
 
-  constructor(private teamsService: TeamsService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: EliteApiService
+  ) {}
 
   ngOnInit() {
-    this.teams = this.teamsService.getAll();
+    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    this.teams$ = this.apiService.getTournamentTeams(tournamentId);
   }
 }

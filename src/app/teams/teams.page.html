@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-item
-    *ngFor="let team of teams"
+    *ngFor="let team of teams$ | async"
     routerLink="/team-home/{{team.id}}"
     routerDirection="forward"
     >{{team.name}}</ion-item
