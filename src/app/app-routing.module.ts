@@ -30,22 +30,24 @@ const routes: Routes = [
       import('./teams/teams.module').then((m) => m.TeamsPageModule),
   },
   {
-    path: 'team-detail/:id',
-    loadChildren: () =>
-      import('./team-detail/team-detail.module').then(
-        (m) => m.TeamDetailPageModule
-      ),
-  },
-  {
     path: 'game',
     loadChildren: () =>
       import('./game/game.module').then((m) => m.GamePageModule),
+  },
+
+  {
+    path: 'team-home',
+    loadChildren: () =>
+      import('./team-home/team-home.module').then((m) => m.TeamHomePageModule),
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      paramsInheritanceStrategy: 'always',
+    }),
   ],
   exports: [RouterModule],
 })
