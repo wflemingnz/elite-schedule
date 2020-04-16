@@ -1,7 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 import { EliteApiService } from '../services/elite-api.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tournaments',
