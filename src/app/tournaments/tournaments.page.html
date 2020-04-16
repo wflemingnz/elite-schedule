@@ -9,11 +9,12 @@
 
 <ion-content>
   <ion-list>
-    <ion-item routerLink="/teams" routerDirection="forward">
-      March Madness
-    </ion-item>
-    <ion-item routerLink="/teams" routerDirection="forward">
-      Summer Showdown
+    <ion-item
+      *ngFor="let tournament of tournaments$ | async"
+      routerLink="/teams"
+      routerDirection="forward"
+    >
+      {{ tournament.name }}
     </ion-item>
   </ion-list>
 </ion-content>
