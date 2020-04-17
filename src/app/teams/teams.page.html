@@ -8,10 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-item
-    *ngFor="let team of teams$ | async"
-    [routerLink]="['/', 'tournaments', tournamentId, 'team-home', team.id]"
-    routerDirection="forward"
-    >{{team.name}}</ion-item
-  >
+  <ion-list>
+    <ion-item-group
+      *ngFor="let divisionTeams of teamsGroupedByDivision$ | async"
+    >
+      <ion-item-divider color="secondary">
+        {{ divisionTeams.division }}
+      </ion-item-divider>
+      <ion-item
+        *ngFor="let team of divisionTeams.teams"
+        [routerLink]="['/', 'tournaments', tournamentId, 'team-home', team.id]"
+        routerDirection="forward"
+        >{{team.name}}</ion-item
+      >
+    </ion-item-group>
+  </ion-list>
 </ion-content>

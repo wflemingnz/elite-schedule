@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, filter, flatMap, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { GameData } from '../models/game';
+import { TeamData } from '../models/team';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class EliteApiService {
   }
 
   getTournamentTeams(tournamentId: string) {
-    return this.http.get<any>(
+    return this.http.get<TeamData[]>(
       `${this.baseUrl}data/tournaments-data/${tournamentId}/teams.json`
     );
   }
@@ -28,7 +29,7 @@ export class EliteApiService {
     );
   }
 
-  getTeam(tournamentId: string, teamId: number): Observable<any> {
+  getTeam(tournamentId: string, teamId: number) {
     return this.getTournamentTeams(tournamentId).pipe(
       map((teams) => teams.find((team) => team.id === teamId))
     );

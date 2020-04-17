@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EliteApiService } from '../services/elite-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, zip, of } from 'rxjs';
+import { groupBy, mergeMap, toArray, map, flatMap } from 'rxjs/operators';
+import { TeamData } from '../models/team';
 
 @Component({
   selector: 'app-teams',
@@ -10,7 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class TeamsPage implements OnInit {
   tournamentId: string;
-  teams$: Observable<any>;
+  teams$: Observable<TeamData[]>;
+  teamsGroupedByDivision$: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,5 +23,15 @@ export class TeamsPage implements OnInit {
   ngOnInit() {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.teams$ = this.apiService.getTournamentTeams(this.tournamentId);
+    this.teamsGroupedByDivision$ = this.teams$.pipe(
+      flatMap((teams) => teams),
+      groupBy((team) => team.division),
+      mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
+      map((groupsArray) => ({
+        division: groupsArray[0],
+        teams: groupsArray[1],
+      })),
+      toArray()
+    );
   }
 }
