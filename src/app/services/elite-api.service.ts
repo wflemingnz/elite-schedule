@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, filter, flatMap, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { GameData } from '../models/game';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +22,56 @@ export class EliteApiService {
     );
   }
 
+  getTournamentGames(tournamentId: string) {
+    return this.http.get<GameData[]>(
+      `${this.baseUrl}data/tournaments-data/${tournamentId}/games.json`
+    );
+  }
+
   getTeam(tournamentId: string, teamId: number): Observable<any> {
     return this.getTournamentTeams(tournamentId).pipe(
       map((teams) => teams.find((team) => team.id === teamId))
     );
+  }
+
+  getGamesForTeam(tournamentId: string, teamId: number) {
+    return this.getTournamentGames(tournamentId).pipe(
+      flatMap((games) => games),
+      filter((game) => game.team1Id === teamId || game.team2Id === teamId),
+      map((game) => this.createGame(game, teamId)),
+      toArray()
+    );
+  }
+
+  createGame(game: any, teamId: number) {
+    const isTeam1 = game.team1 === teamId;
+    const opponentName = isTeam1 ? game.team2 : game.team1;
+    const scoreDisplay = this.getScoreDisplay(
+      isTeam1,
+      game.Team1Score,
+      game.Team2Score
+    );
+    return {
+      gameId: game.id,
+      opponent: opponentName,
+      time: Date.parse(game.time),
+      location: game.location,
+      locationUrl: game.locationUrl,
+      scoreDisplay,
+      homeAway: isTeam1 ? 'vs' : 'at',
+    };
+  }
+
+  private getScoreDisplay(
+    isTeam1: boolean,
+    team1Score: number,
+    team2Score: number
+  ) {
+    if (team1Score && team2Score) {
+      const teamScore = isTeam1 ? team1Score : team2Score;
+      const opponentScore = isTeam1 ? team2Score : team1Score;
+      const winIndicator = teamScore > opponentScore ? 'W: ' : 'L: ';
+      return `${winIndicator} ${teamScore} - ${opponentScore}`;
+    }
   }
 }
