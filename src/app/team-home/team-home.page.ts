@@ -4,7 +4,6 @@ import { StandingsPage } from '../standings/standings.page';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-home',
@@ -24,8 +23,6 @@ export class TeamHomePage implements OnInit {
   ngOnInit() {
     const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     const teamId = +this.route.snapshot.paramMap.get('teamId');
-    this.team$ = this.apiService
-      .getTournamentTeams(tournamentId)
-      .pipe(map((teams) => teams.find((team) => team.id === teamId)));
+    this.team$ = this.apiService.getTeam(tournamentId, teamId);
   }
 }

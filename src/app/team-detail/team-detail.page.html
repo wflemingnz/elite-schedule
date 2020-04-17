@@ -4,5 +4,5 @@
 
 <ion-content>
   <h2>Team Detail</h2>
-  <h4>Name: {{team.name}}</h4>
+  <h4>Name: {{(team$ | async)?.name}}</h4>
 </ion-content>
