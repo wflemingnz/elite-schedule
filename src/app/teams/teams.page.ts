@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./teams.page.scss'],
 })
 export class TeamsPage implements OnInit {
+  tournamentId: string;
   teams$: Observable<any>;
 
   constructor(
@@ -17,7 +18,7 @@ export class TeamsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
-    this.teams$ = this.apiService.getTournamentTeams(tournamentId);
+    this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    this.teams$ = this.apiService.getTournamentTeams(this.tournamentId);
   }
 }

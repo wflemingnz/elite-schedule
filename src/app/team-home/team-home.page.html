@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
-    <ion-title>{{team.name}}</ion-title>
+    <ion-title>{{(team$ | async)?.name}}</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/" routerDirection="backward"
         ><ion-icon name="home"></ion-icon

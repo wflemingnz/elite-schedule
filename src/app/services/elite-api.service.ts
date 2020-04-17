@@ -14,7 +14,7 @@ export class EliteApiService {
   }
 
   getTournamentTeams(tournamentId: string) {
-    return this.http.get(
+    return this.http.get<any>(
       `${this.baseUrl}data/tournaments-data/${tournamentId}/teams.json`
     );
   }

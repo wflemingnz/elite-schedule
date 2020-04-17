@@ -36,7 +36,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'team-home',
+    path: 'tournaments/:tournamentId/team-home',
     loadChildren: () =>
       import('./team-home/team-home.module').then((m) => m.TeamHomePageModule),
   },

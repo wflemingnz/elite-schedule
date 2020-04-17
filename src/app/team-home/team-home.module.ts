@@ -9,12 +9,7 @@ import { TeamHomePageRoutingModule } from './team-home-routing.module';
 import { TeamHomePage } from './team-home.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    TeamHomePageRoutingModule
-  ],
-  declarations: [TeamHomePage]
+  imports: [CommonModule, FormsModule, IonicModule, TeamHomePageRoutingModule],
+  declarations: [TeamHomePage],
 })
 export class TeamHomePageModule {}

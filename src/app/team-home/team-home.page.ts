@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TeamDetailPage } from '../team-detail/team-detail.page';
 import { StandingsPage } from '../standings/standings.page';
 import { ActivatedRoute } from '@angular/router';
-import { TeamsService } from '../services/teams-service';
+import { EliteApiService } from '../services/elite-api.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-home',
@@ -10,17 +12,20 @@ import { TeamsService } from '../services/teams-service';
   styleUrls: ['./team-home.page.scss'],
 })
 export class TeamHomePage implements OnInit {
-  team = {};
+  team$: Observable<any>;
   public teamDetailTab = TeamDetailPage;
   public standingsTab = StandingsPage;
 
   constructor(
     private route: ActivatedRoute,
-    private teamsService: TeamsService
+    private apiService: EliteApiService
   ) {}
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.team = this.teamsService.getById(id);
+    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    const teamId = +this.route.snapshot.paramMap.get('teamId');
+    this.team$ = this.apiService
+      .getTournamentTeams(tournamentId)
+      .pipe(map((teams) => teams.find((team) => team.id === teamId)));
   }
 }

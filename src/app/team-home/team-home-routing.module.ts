@@ -5,7 +5,7 @@ import { TeamHomePage } from './team-home.page';
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: ':teamId',
     component: TeamHomePage,
     children: [
       {
