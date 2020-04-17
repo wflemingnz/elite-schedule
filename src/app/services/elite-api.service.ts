@@ -44,7 +44,7 @@ export class EliteApiService {
   }
 
   createGame(game: any, teamId: number) {
-    const isTeam1 = game.team1 === teamId;
+    const isTeam1 = game.team1Id === teamId;
     const opponentName = isTeam1 ? game.team2 : game.team1;
     const scoreDisplay = this.getScoreDisplay(
       isTeam1,
