@@ -30,7 +30,7 @@ const routes: Routes = [
       import('./teams/teams.module').then((m) => m.TeamsPageModule),
   },
   {
-    path: 'game',
+    path: 'tournaments/:tournamentId/game',
     loadChildren: () =>
       import('./game/game.module').then((m) => m.GamePageModule),
   },

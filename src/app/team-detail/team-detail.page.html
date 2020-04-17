@@ -6,7 +6,11 @@
   <h2>Team Detail</h2>
   <h4>Name: {{(team$ | async)?.name}}</h4>
   <ion-list>
-    <ion-item *ngFor="let game of games$ | async">
+    <ion-item
+      *ngFor="let game of games$ | async"
+      [routerLink]="['/','tournaments', tournamentId, 'game', game.id]"
+      routerDirection="forward"
+    >
       {{ game.opponent }}
     </ion-item>
   </ion-list>

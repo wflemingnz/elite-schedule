@@ -34,6 +34,12 @@ export class EliteApiService {
     );
   }
 
+  getGame(tournamentId: string, gameId: number) {
+    return this.getTournamentGames(tournamentId).pipe(
+      map((games) => games.find((game) => game.id === gameId))
+    );
+  }
+
   getGamesForTeam(tournamentId: string, teamId: number) {
     return this.getTournamentGames(tournamentId).pipe(
       flatMap((games) => games),
@@ -52,7 +58,7 @@ export class EliteApiService {
       game.Team2Score
     );
     return {
-      gameId: game.id,
+      id: game.id,
       opponent: opponentName,
       time: Date.parse(game.time),
       location: game.location,
