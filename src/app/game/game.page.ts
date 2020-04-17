@@ -9,6 +9,7 @@ import { EliteApiService } from '../services/elite-api.service';
   styleUrls: ['./game.page.scss'],
 })
 export class GamePage implements OnInit {
+  tournamentId: string;
   game$: Observable<any>;
 
   constructor(
@@ -17,8 +18,8 @@ export class GamePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     const gameId = +this.route.snapshot.paramMap.get('gameId');
-    this.game$ = this.apiService.getGame(tournamentId, gameId);
+    this.game$ = this.apiService.getGame(this.tournamentId, gameId);
   }
 }

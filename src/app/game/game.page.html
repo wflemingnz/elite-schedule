@@ -7,4 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ng-container *ngIf="(game$ | async) as game">
+  <ion-content>
+    <h3>Home Team</h3>
+    <ion-button
+      [routerLink]="['/', 'tournaments', tournamentId, 'team-home', game?.team1Id]"
+      routerDirection="forward"
+      >{{ game?.team1 }}</ion-button
+    >
+    <h3>Away Team</h3>
+    <ion-button
+      [routerLink]="['/', 'tournaments', tournamentId, 'team-home', game?.team2Id]"
+      routerDirection="forward"
+      >{{ game?.team2 }}</ion-button
+    >
+  </ion-content>
+</ng-container>
