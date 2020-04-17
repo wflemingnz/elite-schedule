@@ -3,8 +3,7 @@
 </ion-header>
 
 <ion-content>
-  <h2>Team Detail</h2>
-  <h4>Name: {{(team$ | async)?.name}}</h4>
+  <h2>Games</h2>
   <ion-list>
     <ion-item
       *ngFor="let game of games$ | async"
