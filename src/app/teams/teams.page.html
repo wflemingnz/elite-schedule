@@ -9,9 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-group
-      *ngFor="let divisionTeams of teamsGroupedByDivision$ | async"
-    >
+    <ion-item-group *ngFor="let divisionTeams of teamsByDivision$ | async">
       <ion-item-divider color="secondary">
         {{ divisionTeams.division }}
       </ion-item-divider>

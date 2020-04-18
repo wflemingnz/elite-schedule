@@ -13,7 +13,7 @@ import { TeamData } from '../models/team';
 export class TeamsPage implements OnInit {
   tournamentId: string;
   teams$: Observable<TeamData[]>;
-  teamsGroupedByDivision$: Observable<any>;
+  teamsByDivision$: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class TeamsPage implements OnInit {
   ngOnInit() {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.teams$ = this.apiService.getTournamentTeams(this.tournamentId);
-    this.teamsGroupedByDivision$ = this.teams$.pipe(
+    this.teamsByDivision$ = this.teams$.pipe(
       flatMap((teams) => teams),
       groupBy((team) => team.division),
       mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
