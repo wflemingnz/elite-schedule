@@ -13,7 +13,7 @@
                 Record: {{ teamStanding.wins }}-{{ teamStanding.losses}}
               </h2></ng-container
             >
-            <p>Coach: {{ (team$ | async).coach }}</p></ion-col
+            <p>Coach: {{ (team$ | async)?.coach }}</p></ion-col
           >
           <ion-col></ion-col>
         </ion-row>
