@@ -13,6 +13,7 @@ export class TeamDetailPage implements OnInit {
   teamStanding$: Observable<any>;
   games$: Observable<any>;
   tournamentId: string;
+  filterDate: string;
 
   constructor(
     private route: ActivatedRoute,

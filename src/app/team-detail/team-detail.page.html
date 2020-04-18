@@ -17,6 +17,19 @@
           >
           <ion-col></ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-no-padding">
+              <ion-label>Date Filter:</ion-label>
+              <ion-datetime
+                displayFormat="D/M/YYYY"
+                placeHolder="All"
+                [(ngModel)]="filterDate"
+              ></ion-datetime
+            ></ion-item>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
