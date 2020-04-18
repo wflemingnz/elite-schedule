@@ -10,7 +10,21 @@
       [routerLink]="['/','tournaments', tournamentId, 'game', game.id]"
       routerDirection="forward"
     >
-      {{ game.opponent }}
+      <ion-grid>
+        <ion-row
+          ><ion-col size="3">
+            <p>{{ game.time | date: 'd/M/yy' }}</p>
+            <p>{{ game.time | date: 'shortTime' }}</p>
+          </ion-col>
+          <ion-col>
+            <p>{{ game.homeAway }} {{ game.opponent }}</p>
+            <p>{{ game.location }}</p>
+          </ion-col>
+          <ion-col size="3">
+            <h4>{{ game.scoreDisplay }}</h4>
+          </ion-col></ion-row
+        >
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>

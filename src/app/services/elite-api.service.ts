@@ -55,8 +55,8 @@ export class EliteApiService {
     const opponentName = isTeam1 ? game.team2 : game.team1;
     const scoreDisplay = this.getScoreDisplay(
       isTeam1,
-      game.Team1Score,
-      game.Team2Score
+      game.team1Score,
+      game.team2Score
     );
     return {
       id: game.id,
