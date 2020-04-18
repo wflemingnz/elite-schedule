@@ -37,7 +37,7 @@
   <ion-list-header>Games</ion-list-header>
   <ion-list>
     <ion-item
-      *ngFor="let game of games$ | async"
+      *ngFor="let game of gamesFilteredByDate$ | async"
       [routerLink]="['/','tournaments', tournamentId, 'game', game.id]"
       routerDirection="forward"
     >
