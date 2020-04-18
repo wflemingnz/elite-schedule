@@ -4,6 +4,7 @@ import { map, filter, flatMap, toArray } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { GameData } from '../models/game';
 import { TeamData } from '../models/team';
+import { TeamStandingData } from '../models/team-standing';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,12 @@ export class EliteApiService {
     );
   }
 
+  getTournamentTeamStandings(tournamentId: string) {
+    return this.http.get<TeamStandingData[]>(
+      `${this.baseUrl}data/tournaments-data/${tournamentId}/standings.json`
+    );
+  }
+
   getTournamentGames(tournamentId: string) {
     return this.http.get<GameData[]>(
       `${this.baseUrl}data/tournaments-data/${tournamentId}/games.json`
@@ -32,6 +39,14 @@ export class EliteApiService {
   getTeam(tournamentId: string, teamId: number) {
     return this.getTournamentTeams(tournamentId).pipe(
       map((teams) => teams.find((team) => team.id === teamId))
+    );
+  }
+
+  getTeamStanding(tournamentId: string, teamId: number) {
+    return this.getTournamentTeamStandings(tournamentId).pipe(
+      map((standings) =>
+        standings.find((standing) => standing.teamId === teamId)
+      )
     );
   }
 
