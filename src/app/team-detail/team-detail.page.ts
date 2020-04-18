@@ -28,7 +28,5 @@ export class TeamDetailPage implements OnInit {
       teamId
     );
     this.games$ = this.apiService.getGamesForTeam(this.tournamentId, teamId);
-
-    this.games$.subscribe(console.log);
   }
 }
