@@ -9,11 +9,25 @@
 </ion-header>
 
 <ion-content>
-  <!-- <p>You are not currently following any teams.</p>
-  <p>
-    First select a tournament, then you can follow teams from their team page
-  </p> -->
+  <ion-card>
+    <ion-card-header>No Followed Team</ion-card-header>
+    <ion-card-content>
+      <p>You are not currently following any teams.</p>
+      <p>
+        First select a tournament, then you can follow teams from their team
+        page
+      </p>
 
+      <ion-button
+        class="ion-margin-vertical"
+        routerLink="/tournaments"
+        routerDirection="forward"
+      >
+        <ion-icon name="search" slot="start"></ion-icon>
+        Find a Tournament
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
   <ion-list
     ><ion-list-header>Followed Teams</ion-list-header>
     <ion-item
@@ -26,13 +40,4 @@
       ></ion-item
     ></ion-list
   >
-
-  <ion-button
-    class="ion-padding"
-    routerLink="/tournaments"
-    routerDirection="forward"
-  >
-    <ion-icon name="search" slot="start"></ion-icon>
-    Find a Tournament
-  </ion-button>
 </ion-content>
