@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
-import { Observable } from 'rxjs';
-import { filter, flatMap, toArray } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Component({
@@ -14,7 +14,14 @@ export class TeamDetailPage implements OnInit {
   team$: Observable<any>;
   teamStanding$: Observable<any>;
   gamesFilteredByDate$: ReturnType<EliteApiService['getGamesForTeam']>;
-  filterDate: string; // = '2015-03-21';
+  filterDateSubject = new BehaviorSubject<string>(null);
+
+  public get filterDate(): string {
+    return this.filterDateSubject.value;
+  }
+  public set filterDate(value: string) {
+    this.filterDateSubject.next(value);
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -29,12 +36,16 @@ export class TeamDetailPage implements OnInit {
 
     const games$ = this.apiService.getGamesForTeam(tournamentId, teamId);
     this.gamesFilteredByDate$ = games$.pipe(
-      flatMap((games) => games),
-      filter(
-        (game) =>
-          !this.filterDate || moment(game.time).isSame(this.filterDate, 'day')
-      ),
-      toArray()
+      switchMap((games) =>
+        this.filterDateSubject.pipe(
+          map((date) =>
+            games.filter(
+              (game) =>
+                !this.filterDate || moment(game.time).isSame(date, 'day')
+            )
+          )
+        )
+      )
     );
   }
 }
