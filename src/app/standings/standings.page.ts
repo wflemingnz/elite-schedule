@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TeamsService } from '../services/teams-service';
+import { Observable, zip, of } from 'rxjs';
+import { EliteApiService } from '../services/elite-api.service';
+import { flatMap, groupBy, mergeMap, toArray, map } from 'rxjs/operators';
+import { TeamStandingData } from '../models/team-standing';
 
 @Component({
   selector: 'app-standings',
@@ -8,14 +11,26 @@ import { TeamsService } from '../services/teams-service';
   styleUrls: ['./standings.page.scss'],
 })
 export class StandingsPage implements OnInit {
-  team = {};
+  standings$: Observable<TeamStandingData[]>;
+  standingsByDivision$: Observable<any>;
+
   constructor(
     private route: ActivatedRoute,
-    private teamsService: TeamsService
+    private apiService: EliteApiService
   ) {}
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.team = this.teamsService.getById(id);
+    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    this.standings$ = this.apiService.getTournamentTeamStandings(tournamentId);
+    this.standingsByDivision$ = this.standings$.pipe(
+      flatMap((standings) => standings),
+      groupBy((standing) => standing.division),
+      mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
+      map((groupsArray) => ({
+        division: groupsArray[0],
+        standings: groupsArray[1],
+      })),
+      toArray()
+    );
   }
 }
