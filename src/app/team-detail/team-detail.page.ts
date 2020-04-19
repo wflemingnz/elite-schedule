@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-team-detail',
@@ -38,6 +38,7 @@ export class TeamDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private alertController: AlertController,
+    private toastController: ToastController,
     private apiService: EliteApiService
   ) {}
 
@@ -95,6 +96,7 @@ export class TeamDetailPage implements OnInit {
           handler: () => {
             this.isFollowing = false;
             //TODO: persist data
+            this.displayUnfollowedToast();
           },
         },
         {
@@ -103,6 +105,16 @@ export class TeamDetailPage implements OnInit {
       ],
     });
     await confirmAlert.present();
+  }
+
+  async displayUnfollowedToast() {
+    const toast = await this.toastController.create({
+      message: 'You have unfollowed this team',
+      duration: 2000,
+      position: 'top',
+    });
+
+    toast.present();
   }
 
   followTeam() {
