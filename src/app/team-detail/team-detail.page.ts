@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-team-detail',
@@ -36,6 +37,7 @@ export class TeamDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private alertController: AlertController,
     private apiService: EliteApiService
   ) {}
 
@@ -81,5 +83,30 @@ export class TeamDetailPage implements OnInit {
 
   getResultColor(resultIndicator: string) {
     return resultIndicator === 'W' ? 'success' : 'danger';
+  }
+
+  async unfollowTeam() {
+    const confirmAlert = await this.alertController.create({
+      header: 'Unfollow?',
+      message: 'Are you sure you want to unfollow?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => {
+            this.isFollowing = false;
+            //TODO: persist data
+          },
+        },
+        {
+          text: 'No',
+        },
+      ],
+    });
+    await confirmAlert.present();
+  }
+
+  followTeam() {
+    this.isFollowing = true;
+    //TODO: persist data
   }
 }
