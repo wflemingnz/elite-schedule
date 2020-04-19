@@ -12,6 +12,7 @@ import { Game } from '../models/game';
   styleUrls: ['./team-detail.page.scss'],
 })
 export class TeamDetailPage implements OnInit {
+  tournamentId: string;
   team$: Observable<any>;
   teamStanding$: Observable<any>;
   gamesFiltered$: Observable<Game[]>;
@@ -38,12 +39,15 @@ export class TeamDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
+    this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     const teamId = +this.route.snapshot.paramMap.get('teamId');
-    this.team$ = this.apiService.getTeam(tournamentId, teamId);
-    this.teamStanding$ = this.apiService.getTeamStanding(tournamentId, teamId);
+    this.team$ = this.apiService.getTeam(this.tournamentId, teamId);
+    this.teamStanding$ = this.apiService.getTeamStanding(
+      this.tournamentId,
+      teamId
+    );
 
-    const games$ = this.apiService.getGamesForTeam(tournamentId, teamId);
+    const games$ = this.apiService.getGamesForTeam(this.tournamentId, teamId);
 
     this.gamesFiltered$ = games$.pipe(
       switchMap((games) =>
