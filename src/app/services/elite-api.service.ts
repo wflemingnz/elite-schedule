@@ -89,11 +89,16 @@ export class EliteApiService {
     team1Score: number,
     team2Score: number
   ) {
+    let resultIndicator = '';
+    let scores = '';
+
     if (team1Score && team2Score) {
       const teamScore = isTeam1 ? team1Score : team2Score;
       const opponentScore = isTeam1 ? team2Score : team1Score;
-      const resultIndicator = teamScore > opponentScore ? 'W' : 'L';
-      return { resultIndicator, scores: `${teamScore}-${opponentScore}` };
+      resultIndicator = teamScore > opponentScore ? 'W' : 'L';
+      scores = `${teamScore}-${opponentScore}`;
     }
+
+    return { resultIndicator, scores };
   }
 }
