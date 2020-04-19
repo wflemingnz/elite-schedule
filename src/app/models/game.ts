@@ -10,3 +10,13 @@ export interface GameData {
   team2Score: string;
   time: string;
 }
+
+export interface Game {
+  id: number;
+  opponent: string;
+  time: number;
+  location: string;
+  locationUrl: string;
+  scoreDisplay: string;
+  homeAway: string;
+}

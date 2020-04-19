@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, filter, flatMap, toArray } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { GameData } from '../models/game';
+import { GameData, Game } from '../models/game';
 import { TeamData } from '../models/team';
 import { TeamStandingData } from '../models/team-standing';
 
@@ -65,7 +64,7 @@ export class EliteApiService {
     );
   }
 
-  createGame(game: any, teamId: number) {
+  createGame(game: any, teamId: number): Game {
     const isTeam1 = game.team1Id === teamId;
     const opponentName = isTeam1 ? game.team2 : game.team1;
     const scoreDisplay = this.getScoreDisplay(

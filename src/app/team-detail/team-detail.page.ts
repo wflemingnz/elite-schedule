@@ -4,6 +4,7 @@ import { EliteApiService } from '../services/elite-api.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
+import { Game } from '../models/game';
 
 @Component({
   selector: 'app-team-detail',
@@ -13,7 +14,7 @@ import * as moment from 'moment';
 export class TeamDetailPage implements OnInit {
   team$: Observable<any>;
   teamStanding$: Observable<any>;
-  gamesFiltered$: ReturnType<EliteApiService['getGamesForTeam']>;
+  gamesFiltered$: Observable<Game[]>;
   filterDateSubject = new BehaviorSubject<string>(null);
   useDateFilterSubject = new BehaviorSubject<boolean>(false);
 
@@ -52,14 +53,16 @@ export class TeamDetailPage implements OnInit {
               map((filterDate) =>
                 !useDateFilter || !filterDate
                   ? games
-                  : games.filter((game) =>
-                      moment(game.time).isSame(filterDate, 'day')
-                    )
+                  : this.filterGamesByDate(games, filterDate)
               )
             )
           )
         )
       )
     );
+  }
+
+  private filterGamesByDate(games: Game[], filterDate: string) {
+    return games.filter((game) => moment(game.time).isSame(filterDate, 'day'));
   }
 }
