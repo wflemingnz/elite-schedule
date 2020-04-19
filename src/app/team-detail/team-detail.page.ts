@@ -18,6 +18,7 @@ export class TeamDetailPage implements OnInit {
   gamesFiltered$: Observable<Game[]>;
   filterDateSubject = new BehaviorSubject<string>(null);
   useDateFilterSubject = new BehaviorSubject<boolean>(false);
+  isFollowing = false;
 
   public get filterDate(): string {
     return this.filterDateSubject.value;
