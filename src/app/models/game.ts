@@ -17,6 +17,7 @@ export interface Game {
   time: number;
   location: string;
   locationUrl: string;
-  scoreDisplay: string;
+  resultIndicator: string;
+  scores: string;
   homeAway: string;
 }

@@ -67,7 +67,7 @@ export class EliteApiService {
   createGame(game: any, teamId: number): Game {
     const isTeam1 = game.team1Id === teamId;
     const opponentName = isTeam1 ? game.team2 : game.team1;
-    const scoreDisplay = this.getScoreDisplay(
+    const { resultIndicator, scores } = this.getResultInfo(
       isTeam1,
       game.team1Score,
       game.team2Score
@@ -78,12 +78,13 @@ export class EliteApiService {
       time: Date.parse(game.time),
       location: game.location,
       locationUrl: game.locationUrl,
-      scoreDisplay,
+      resultIndicator,
+      scores,
       homeAway: isTeam1 ? 'vs' : 'at',
     };
   }
 
-  private getScoreDisplay(
+  private getResultInfo(
     isTeam1: boolean,
     team1Score: number,
     team2Score: number
@@ -91,8 +92,8 @@ export class EliteApiService {
     if (team1Score && team2Score) {
       const teamScore = isTeam1 ? team1Score : team2Score;
       const opponentScore = isTeam1 ? team2Score : team1Score;
-      const winIndicator = teamScore > opponentScore ? 'W: ' : 'L: ';
-      return `${winIndicator} ${teamScore} - ${opponentScore}`;
+      const resultIndicator = teamScore > opponentScore ? 'W' : 'L';
+      return { resultIndicator, scores: `${teamScore}-${opponentScore}` };
     }
   }
 }
