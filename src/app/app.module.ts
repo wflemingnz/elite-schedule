@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule,
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
   ],

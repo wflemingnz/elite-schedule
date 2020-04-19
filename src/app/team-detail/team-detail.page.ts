@@ -6,6 +6,8 @@ import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
 import { AlertController, ToastController } from '@ionic/angular';
+import { UserSettingsService } from '../services/user-settings.service';
+import { TeamData } from '../models/team';
 
 @Component({
   selector: 'app-team-detail',
@@ -14,7 +16,9 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class TeamDetailPage implements OnInit {
   tournamentId: string;
+  teamId: number;
   team$: Observable<any>;
+  teamIsFollowed$: Observable<boolean>;
   teamStanding$: Observable<any>;
   gamesFiltered$: Observable<Game[]>;
   filterDateSubject = new BehaviorSubject<string>(null);
@@ -39,19 +43,27 @@ export class TeamDetailPage implements OnInit {
     private route: ActivatedRoute,
     private alertController: AlertController,
     private toastController: ToastController,
-    private apiService: EliteApiService
+    private apiService: EliteApiService,
+    private userSettings: UserSettingsService
   ) {}
 
   ngOnInit() {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
-    const teamId = +this.route.snapshot.paramMap.get('teamId');
-    this.team$ = this.apiService.getTeam(this.tournamentId, teamId);
-    this.teamStanding$ = this.apiService.getTeamStanding(
-      this.tournamentId,
-      teamId
+    this.teamId = +this.route.snapshot.paramMap.get('teamId');
+    this.team$ = this.apiService.getTeam(this.tournamentId, this.teamId);
+    this.teamIsFollowed$ = this.team$.pipe(
+      switchMap((team) => this.userSettings.isTeamFollowed(team.id))
     );
 
-    const games$ = this.apiService.getGamesForTeam(this.tournamentId, teamId);
+    this.teamStanding$ = this.apiService.getTeamStanding(
+      this.tournamentId,
+      this.teamId
+    );
+
+    const games$ = this.apiService.getGamesForTeam(
+      this.tournamentId,
+      this.teamId
+    );
 
     this.gamesFiltered$ = games$.pipe(
       switchMap((games) =>
@@ -93,9 +105,9 @@ export class TeamDetailPage implements OnInit {
       buttons: [
         {
           text: 'Yes',
-          handler: () => {
+          handler: async () => {
             this.isFollowing = false;
-            //TODO: persist data
+            await this.userSettings.unfollowTeam(this.teamId);
             this.displayUnfollowedToast();
           },
         },
@@ -107,6 +119,11 @@ export class TeamDetailPage implements OnInit {
     await confirmAlert.present();
   }
 
+  async followTeam() {
+    this.isFollowing = true;
+    await this.userSettings.followTeam(this.teamId);
+  }
+
   async displayUnfollowedToast() {
     const toast = await this.toastController.create({
       message: 'You have unfollowed this team',
@@ -115,10 +132,5 @@ export class TeamDetailPage implements OnInit {
     });
 
     toast.present();
-  }
-
-  followTeam() {
-    this.isFollowing = true;
-    //TODO: persist data
   }
 }
