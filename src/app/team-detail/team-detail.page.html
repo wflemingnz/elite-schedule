@@ -54,7 +54,9 @@
           </ion-col>
           <ion-col size="3">
             <h4>{{ game.scores }}</h4>
-            <ion-badge>{{ game.resultIndicator }}</ion-badge>
+            <ion-badge [color]="getResultColor(game.resultIndicator)"
+              >{{ game.resultIndicator }}</ion-badge
+            >
           </ion-col></ion-row
         >
       </ion-grid>

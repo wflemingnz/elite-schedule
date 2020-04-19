@@ -77,4 +77,8 @@ export class TeamDetailPage implements OnInit {
   private filterGamesByDate(games: Game[], filterDate: string) {
     return games.filter((game) => moment(game.time).isSame(filterDate, 'day'));
   }
+
+  getResultColor(resultIndicator: string) {
+    return resultIndicator === 'W' ? 'success' : 'danger';
+  }
 }
