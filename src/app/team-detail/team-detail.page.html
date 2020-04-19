@@ -25,10 +25,11 @@
                 displayFormat="D/M/YYYY"
                 placeHolder="All"
                 [(ngModel)]="filterDate"
-              ></ion-datetime
+                [(disabled)]="!useDateFilter"
+              ></ion-datetime>
+              <ion-toggle [(ngModel)]="useDateFilter" slot="end"></ion-toggle
             ></ion-item>
           </ion-col>
-          <ion-col></ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
@@ -37,7 +38,7 @@
   <ion-list-header>Games</ion-list-header>
   <ion-list>
     <ion-item
-      *ngFor="let game of gamesFilteredByDate$ | async"
+      *ngFor="let game of gamesFiltered$ | async"
       [routerLink]="['/','tournaments', tournamentId, 'game', game.id]"
       routerDirection="forward"
     >

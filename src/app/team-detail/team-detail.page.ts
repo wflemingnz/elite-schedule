@@ -13,14 +13,22 @@ import * as moment from 'moment';
 export class TeamDetailPage implements OnInit {
   team$: Observable<any>;
   teamStanding$: Observable<any>;
-  gamesFilteredByDate$: ReturnType<EliteApiService['getGamesForTeam']>;
+  gamesFiltered$: ReturnType<EliteApiService['getGamesForTeam']>;
   filterDateSubject = new BehaviorSubject<string>(null);
+  useDateFilterSubject = new BehaviorSubject<boolean>(false);
 
   public get filterDate(): string {
     return this.filterDateSubject.value;
   }
   public set filterDate(value: string) {
     this.filterDateSubject.next(value);
+  }
+
+  public get useDateFilter(): boolean {
+    return this.useDateFilterSubject.value;
+  }
+  public set useDateFilter(value: boolean) {
+    this.useDateFilterSubject.next(value);
   }
 
   constructor(
@@ -35,13 +43,19 @@ export class TeamDetailPage implements OnInit {
     this.teamStanding$ = this.apiService.getTeamStanding(tournamentId, teamId);
 
     const games$ = this.apiService.getGamesForTeam(tournamentId, teamId);
-    this.gamesFilteredByDate$ = games$.pipe(
+
+    this.gamesFiltered$ = games$.pipe(
       switchMap((games) =>
-        this.filterDateSubject.pipe(
-          map((date) =>
-            games.filter(
-              (game) =>
-                !this.filterDate || moment(game.time).isSame(date, 'day')
+        this.useDateFilterSubject.pipe(
+          switchMap((useDateFilter) =>
+            this.filterDateSubject.pipe(
+              map((filterDate) =>
+                !useDateFilter || !filterDate
+                  ? games
+                  : games.filter((game) =>
+                      moment(game.time).isSame(filterDate, 'day')
+                    )
+              )
             )
           )
         )
