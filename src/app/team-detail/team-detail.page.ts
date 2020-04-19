@@ -51,15 +51,23 @@ export class TeamDetailPage implements OnInit {
           switchMap((useDateFilter) =>
             this.filterDateSubject.pipe(
               map((filterDate) =>
-                !useDateFilter || !filterDate
-                  ? games
-                  : this.filterGamesByDate(games, filterDate)
+                this.filterGames(games, useDateFilter, filterDate)
               )
             )
           )
         )
       )
     );
+  }
+
+  private filterGames(
+    games: Game[],
+    useDateFilter: boolean,
+    filterDate: string
+  ) {
+    return !useDateFilter || !filterDate
+      ? games
+      : this.filterGamesByDate(games, filterDate);
   }
 
   private filterGamesByDate(games: Game[], filterDate: string) {
