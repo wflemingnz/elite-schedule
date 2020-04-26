@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from, concat } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
@@ -23,6 +23,7 @@ export class TeamDetailPage implements OnInit {
   gamesFiltered$: Observable<Game[]>;
   filterDateSubject = new BehaviorSubject<string>(null);
   useDateFilterSubject = new BehaviorSubject<boolean>(false);
+  teamIsFollowedSubject = new BehaviorSubject<boolean>(null);
   isFollowing = false;
 
   public get filterDate(): string {
@@ -51,8 +52,9 @@ export class TeamDetailPage implements OnInit {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.teamId = +this.route.snapshot.paramMap.get('teamId');
     this.team$ = this.apiService.getTeam(this.tournamentId, this.teamId);
-    this.teamIsFollowed$ = this.team$.pipe(
-      switchMap((team) => this.userSettings.isTeamFollowed(team.id))
+    this.teamIsFollowed$ = concat(
+      this.userSettings.isTeamFollowed(this.teamId),
+      this.teamIsFollowedSubject
     );
 
     this.teamStanding$ = this.apiService.getTeamStanding(
@@ -106,7 +108,7 @@ export class TeamDetailPage implements OnInit {
         {
           text: 'Yes',
           handler: async () => {
-            this.isFollowing = false;
+            this.teamIsFollowedSubject.next(false);
             await this.userSettings.unfollowTeam(this.teamId);
             this.displayUnfollowedToast();
           },
@@ -120,7 +122,7 @@ export class TeamDetailPage implements OnInit {
   }
 
   async followTeam() {
-    this.isFollowing = true;
+    this.teamIsFollowedSubject.next(true);
     await this.userSettings.followTeam(this.teamId);
   }
 

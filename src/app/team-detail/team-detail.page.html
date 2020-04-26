@@ -16,20 +16,19 @@
             <p>Coach: {{ (team$ | async)?.coach }}</p></ion-col
           >
           <ion-col size="6">
-            <ng-container *ngIf="(teamIsFollowed$ | async) as teamIsFollowed">
-              <ion-button
-                class="ion-float-right"
-                *ngIf="teamIsFollowed; else notFollowed"
-                (click)="unfollowTeam()"
+            <ng-container
+              *ngIf="(teamIsFollowed$ | async) as teamIsFollowed; else notFollowed"
+            >
+              <ion-button class="ion-float-right" (click)="unfollowTeam()"
                 ><ion-icon name="star"></ion-icon
               ></ion-button>
-              <ng-template #notFollowed>
-                <ion-button class="ion-float-right" (click)="followTeam()"
-                  ><ion-icon name="star" class="ion-padding-end"></ion-icon
-                  ><ion-label>Add Favourite</ion-label></ion-button
-                ></ng-template
-              >
             </ng-container>
+            <ng-template #notFollowed>
+              <ion-button class="ion-float-right" (click)="followTeam()"
+                ><ion-icon name="star" class="ion-padding-end"></ion-icon
+                ><ion-label>Add Favourite</ion-label></ion-button
+              ></ng-template
+            >
           </ion-col>
         </ion-row>
         <ion-row>
