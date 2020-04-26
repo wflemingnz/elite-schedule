@@ -125,7 +125,7 @@ export class TeamDetailPage implements OnInit {
 
   async followTeam() {
     this.teamIsFollowedSubject.next(true);
-    await this.userSettings.followTeam(this.teamId);
+    await this.userSettings.followTeam(this.teamId, this.tournamentId);
   }
 
   async displayUnfollowedToast() {
