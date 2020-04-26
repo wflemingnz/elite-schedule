@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
-import { Observable, BehaviorSubject, from, concat } from 'rxjs';
+import { Observable, BehaviorSubject, concat } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
 import { AlertController, ToastController } from '@ionic/angular';
 import { UserSettingsService } from '../services/user-settings.service';
-import { TeamData } from '../models/team';
 
 @Component({
   selector: 'app-team-detail',
@@ -24,7 +23,6 @@ export class TeamDetailPage implements OnInit {
   filterDateSubject = new BehaviorSubject<string>(null);
   useDateFilterSubject = new BehaviorSubject<boolean>(false);
   teamIsFollowedSubject = new BehaviorSubject<boolean>(null);
-  isFollowing = false;
 
   public get filterDate(): string {
     return this.filterDateSubject.value;
