@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
-import {
-  Observable,
-  BehaviorSubject,
-  concat,
-  empty,
-  combineLatest,
-} from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { map, switchMap, startWith } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
