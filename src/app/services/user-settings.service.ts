@@ -25,6 +25,9 @@ export class UserSettingsService {
   async getFollowedTeams(): Promise<FollowedTeam[]> {
     // don't use storage.forEach as it is buggy https://forum.ionicframework.com/t/get-all-values-from-ionic-storage/101842/8
     const keys = await this.storage.keys();
-    return await Promise.all(keys.map((k) => this.storage.get(k)));
+    const values: string[] = await Promise.all(
+      keys.map((k) => this.storage.get(k))
+    );
+    return values.map((value) => JSON.parse(value));
   }
 }
