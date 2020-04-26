@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, from, forkJoin } from 'rxjs';
+import { TeamData } from '../models/team';
+import { EliteApiService } from '../services/elite-api.service';
+import { switchMap, map } from 'rxjs/operators';
+import { UserSettingsService } from '../services/user-settings.service';
+import { TournamentData } from '../models/tournament';
 
 @Component({
   selector: 'app-my-teams',
@@ -6,20 +12,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-teams.page.scss'],
 })
 export class MyTeamsPage implements OnInit {
-  favourites = [
-    {
-      team: { id: 6182, name: 'HC Elite 7th', coach: 'Michelotti' },
-      tournamentId: '89e13aa2-ba6d-4f55-9cc2-61eba6172c63',
-      tournamentName: 'March Madness Tournament',
-    },
-    {
-      team: { id: 805, name: 'HC Elite', coach: 'Michelotti' },
-      tournamentId: '98c6857e-b0d1-4295-b89e-2d95a45437f2',
-      tournamentName: 'Holiday Hoops Challenge',
-    },
-  ];
+  followedTeams$: Observable<{ team: TeamData; tournament: TournamentData }[]>;
 
-  constructor() {}
+  constructor(
+    private apiService: EliteApiService,
+    private userSettings: UserSettingsService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const teams$ = this.apiService.getTeams();
+    const tournaments$ = this.apiService.getTournaments();
+    this.followedTeams$ = forkJoin([teams$, tournaments$]).pipe(
+      switchMap(([teams, tournaments]) =>
+        from(this.userSettings.getFollowedTeams()).pipe(
+          map((followedTeams) =>
+            followedTeams.map((followedTeam) => ({
+              team: teams.find((team) => team.id === followedTeam.teamId),
+              tournament: tournaments.find(
+                (tournament) => tournament.id === followedTeam.tournamentId
+              ),
+            }))
+          )
+        )
+      )
+    );
+  }
 }

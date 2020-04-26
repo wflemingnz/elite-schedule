@@ -9,45 +9,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="!favourites?.length; else showFavourites">
-    <ion-card-header>No Followed Teams</ion-card-header>
-    <ion-card-content>
-      <p>You are not currently following any teams.</p>
-      <p>
-        First select a tournament, then you can follow teams from their team
-        page
-      </p>
-
-      <ion-button
-        class="ion-margin-vertical"
-        routerLink="/tournaments"
-        routerDirection="forward"
-      >
-        <ion-icon name="search" slot="start"></ion-icon>
-        Find a Tournament
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ng-template #showFavourites>
-    <ion-card>
-      <ion-list
-        ><ion-list-header>Followed Teams</ion-list-header>
-        <ion-item
-          *ngFor="let item of favourites"
-          [routerLink]="['/', 'tournaments', item.tournamentId, 'team-home', item.team.id]"
-          routerDirection="forward"
-          ><ion-icon name="star" slot="start"></ion-icon>{{ item.team.name }}
-          <ion-label position="stacked"
-            ><p>{{item.tournamentName}}</p></ion-label
-          ></ion-item
-        ></ion-list
-      >
+  <ng-container *ngIf="(followedTeams$ | async ) as followedTeams">
+    <ion-card *ngIf="!followedTeams.length; else showFavourites">
+      <ion-card-header>No Followed Teams</ion-card-header>
       <ion-card-content>
+        <p>You are not currently following any teams.</p>
         <p>
-          To follow more teams, select a tournament, then you review the teams
+          First select a tournament, then you can follow teams from their team
           page
         </p>
+
         <ion-button
           class="ion-margin-vertical"
           routerLink="/tournaments"
@@ -58,5 +29,37 @@
         </ion-button>
       </ion-card-content>
     </ion-card>
-  </ng-template>
+
+    <ng-template #showFavourites>
+      <ion-card>
+        <ion-list
+          ><ion-list-header>Followed Teams</ion-list-header>
+          <ion-item
+            *ngFor="let followedTeam of followedTeams"
+            [routerLink]="['/', 'tournaments', followedTeam.tournament.id, 'team-home', followedTeam.team.id]"
+            routerDirection="forward"
+            ><ion-icon name="star" slot="start"></ion-icon>{{
+            followedTeam.team.name }}
+            <ion-label position="stacked"
+              ><p>{{followedTeam.tournament.name}}</p></ion-label
+            ></ion-item
+          ></ion-list
+        >
+        <ion-card-content>
+          <p>
+            To follow more teams, select a tournament, then you review the teams
+            page
+          </p>
+          <ion-button
+            class="ion-margin-vertical"
+            routerLink="/tournaments"
+            routerDirection="forward"
+          >
+            <ion-icon name="search" slot="start"></ion-icon>
+            Find a Tournament
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </ng-container>
 </ion-content>

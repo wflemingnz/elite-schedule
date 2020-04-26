@@ -4,6 +4,7 @@ import { map, filter, flatMap, toArray } from 'rxjs/operators';
 import { GameData, Game } from '../models/game';
 import { TeamData } from '../models/team';
 import { TeamStandingData } from '../models/team-standing';
+import { TournamentData } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class EliteApiService {
   constructor(private http: HttpClient) {}
 
   getTournaments() {
-    return this.http.get(`${this.baseUrl}/tournaments.json`);
+    return this.http.get<TournamentData[]>(`${this.baseUrl}/tournaments.json`);
   }
 
   getTeams() {
