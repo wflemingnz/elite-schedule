@@ -11,7 +11,9 @@ import { TournamentData } from '../models/tournament';
   templateUrl: './my-teams.page.html',
   styleUrls: ['./my-teams.page.scss'],
 })
-export class MyTeamsPage implements OnInit {
+export class MyTeamsPage {
+  teams$ = this.apiService.getTeams();
+  tournaments$ = this.apiService.getTournaments();
   followedTeams$: Observable<{ team: TeamData; tournament: TournamentData }[]>;
 
   constructor(
@@ -19,10 +21,8 @@ export class MyTeamsPage implements OnInit {
     private userSettings: UserSettingsService
   ) {}
 
-  ngOnInit() {
-    const teams$ = this.apiService.getTeams();
-    const tournaments$ = this.apiService.getTournaments();
-    this.followedTeams$ = forkJoin([teams$, tournaments$]).pipe(
+  ionViewWillEnter() {
+    this.followedTeams$ = forkJoin([this.teams$, this.tournaments$]).pipe(
       switchMap(([teams, tournaments]) =>
         from(this.userSettings.getFollowedTeams()).pipe(
           map((followedTeams) =>
