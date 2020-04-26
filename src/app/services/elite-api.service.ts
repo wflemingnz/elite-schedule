@@ -9,29 +9,33 @@ import { TeamStandingData } from '../models/team-standing';
   providedIn: 'root',
 })
 export class EliteApiService {
-  private baseUrl = 'https://elite-schedule-app-4e079.firebaseio.com/';
+  private baseUrl = 'https://elite-schedule-c.firebaseio.com';
 
   constructor(private http: HttpClient) {}
 
   getTournaments() {
-    return this.http.get(`${this.baseUrl}data/tournaments.json`);
+    return this.http.get(`${this.baseUrl}/tournaments.json`);
+  }
+
+  getTeams() {
+    return this.http.get<TeamData[]>(`${this.baseUrl}/teams.json`);
   }
 
   getTournamentTeams(tournamentId: string) {
     return this.http.get<TeamData[]>(
-      `${this.baseUrl}data/tournaments-data/${tournamentId}/teams.json`
+      `${this.baseUrl}/tournaments-data/${tournamentId}/teams.json`
     );
   }
 
   getTournamentTeamStandings(tournamentId: string) {
     return this.http.get<TeamStandingData[]>(
-      `${this.baseUrl}data/tournaments-data/${tournamentId}/standings.json`
+      `${this.baseUrl}/tournaments-data/${tournamentId}/standings.json`
     );
   }
 
   getTournamentGames(tournamentId: string) {
     return this.http.get<GameData[]>(
-      `${this.baseUrl}data/tournaments-data/${tournamentId}/games.json`
+      `${this.baseUrl}/tournaments-data/${tournamentId}/games.json`
     );
   }
 

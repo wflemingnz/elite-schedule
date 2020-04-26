@@ -1,4 +1,720 @@
 {
+  "teams": [
+    {
+      "id": 812,
+      "name": "Baltimore Stars",
+      "coach": "James",
+      "division": "6th grade"
+    },
+    {
+      "id": 814,
+      "name": "DC Assault",
+      "coach": "Bartlett",
+      "division": "6th grade"
+    },
+    {
+      "id": 828,
+      "name": "MADE Elite",
+      "coach": "Johnson",
+      "division": "6th grade"
+    },
+    {
+      "id": 826,
+      "name": "Reisterstown Wolfpack",
+      "coach": "Hightower",
+      "division": "6th grade"
+    },
+    {
+      "id": 817,
+      "name": "Sharks",
+      "coach": "Smith",
+      "division": "6th grade"
+    },
+    {
+      "id": 813,
+      "name": "Baltimore Supreme",
+      "coach": "Miller",
+      "division": "7th grade"
+    },
+    {
+      "id": 825,
+      "name": "DC Premier",
+      "coach": "Davis",
+      "division": "7th grade"
+    },
+    {
+      "id": 822,
+      "name": "HC Elite",
+      "coach": "Michelotti",
+      "division": "7th grade"
+    },
+    {
+      "id": 827,
+      "name": "Maryland 3D",
+      "coach": "Brown",
+      "division": "7th grade"
+    },
+    {
+      "id": 821,
+      "name": "Severn Elite",
+      "coach": "Wilson",
+      "division": "7th grade"
+    },
+    {
+      "id": 818,
+      "name": "Team Takeover",
+      "coach": "Williams",
+      "division": "7th grade"
+    },
+    {
+      "id": 823,
+      "name": "6th Man Warriors",
+      "coach": "White",
+      "division": "8th grade"
+    },
+    {
+      "id": 816,
+      "name": "E-City Ballers",
+      "coach": "Moore",
+      "division": "8th grade"
+    },
+    {
+      "id": 815,
+      "name": "Force Attack",
+      "coach": "Taylor",
+      "division": "8th grade"
+    },
+    {
+      "id": 824,
+      "name": "Maryland Playmakers",
+      "coach": "Jackson",
+      "division": "8th grade"
+    },
+    {
+      "id": 820,
+      "name": "Savage Eagles",
+      "coach": "Anderson",
+      "division": "8th grade"
+    },
+    {
+      "id": 819,
+      "name": "Team Glory",
+      "coach": "Thomas",
+      "division": "8th grade"
+    },
+    {
+      "id": 796,
+      "name": "Baltimore Stars",
+      "coach": "James",
+      "division": "6th grade"
+    },
+    {
+      "id": 795,
+      "name": "DC Assault",
+      "coach": "Bartlett",
+      "division": "6th grade"
+    },
+    {
+      "id": 798,
+      "name": "MADE Elite",
+      "coach": "Johnson",
+      "division": "6th grade"
+    },
+    {
+      "id": 797,
+      "name": "Reisterstown Wolfpack",
+      "coach": "Hightower",
+      "division": "6th grade"
+    },
+    {
+      "id": 800,
+      "name": "Sharks",
+      "coach": "Smith",
+      "division": "6th grade"
+    },
+    {
+      "id": 802,
+      "name": "Baltimore Supreme",
+      "coach": "Miller",
+      "division": "7th grade"
+    },
+    {
+      "id": 801,
+      "name": "DC Premier",
+      "coach": "Davis",
+      "division": "7th grade"
+    },
+    {
+      "id": 805,
+      "name": "HC Elite",
+      "coach": "Michelotti",
+      "division": "7th grade"
+    },
+    {
+      "id": 799,
+      "name": "Maryland 3D",
+      "coach": "Brown",
+      "division": "7th grade"
+    },
+    {
+      "id": 804,
+      "name": "Severn Elite",
+      "coach": "Wilson",
+      "division": "7th grade"
+    },
+    {
+      "id": 803,
+      "name": "Team Takeover",
+      "coach": "Williams",
+      "division": "7th grade"
+    },
+    {
+      "id": 808,
+      "name": "6th Man Warriors",
+      "coach": "White",
+      "division": "8th grade"
+    },
+    {
+      "id": 807,
+      "name": "E-City Ballers",
+      "coach": "Moore",
+      "division": "8th grade"
+    },
+    {
+      "id": 810,
+      "name": "Force Attack",
+      "coach": "Taylor",
+      "division": "8th grade"
+    },
+    {
+      "id": 809,
+      "name": "Maryland Playmakers",
+      "coach": "Jackson",
+      "division": "8th grade"
+    },
+    {
+      "id": 806,
+      "name": "Savage Eagles",
+      "coach": "Anderson",
+      "division": "8th grade"
+    },
+    {
+      "id": 811,
+      "name": "Team Glory",
+      "coach": "Thomas",
+      "division": "8th grade"
+    },
+    {
+      "id": 829,
+      "name": "Baltimore Stars",
+      "coach": "James",
+      "division": "6th grade"
+    },
+    {
+      "id": 842,
+      "name": "DC Assault",
+      "coach": "Bartlett",
+      "division": "6th grade"
+    },
+    {
+      "id": 840,
+      "name": "MADE Elite",
+      "coach": "Johnson",
+      "division": "6th grade"
+    },
+    {
+      "id": 841,
+      "name": "Reisterstown Wolfpack",
+      "coach": "Hightower",
+      "division": "6th grade"
+    },
+    {
+      "id": 844,
+      "name": "Sharks",
+      "coach": "Smith",
+      "division": "6th grade"
+    },
+    {
+      "id": 839,
+      "name": "Baltimore Supreme",
+      "coach": "Miller",
+      "division": "7th grade"
+    },
+    {
+      "id": 845,
+      "name": "DC Premier",
+      "coach": "Davis",
+      "division": "7th grade"
+    },
+    {
+      "id": 830,
+      "name": "HC Elite",
+      "coach": "Michelotti",
+      "division": "7th grade"
+    },
+    {
+      "id": 843,
+      "name": "Maryland 3D",
+      "coach": "Brown",
+      "division": "7th grade"
+    },
+    {
+      "id": 832,
+      "name": "Severn Elite",
+      "coach": "Wilson",
+      "division": "7th grade"
+    },
+    {
+      "id": 831,
+      "name": "Team Takeover",
+      "coach": "Williams",
+      "division": "7th grade"
+    },
+    {
+      "id": 834,
+      "name": "6th Man Warriors",
+      "coach": "White",
+      "division": "8th grade"
+    },
+    {
+      "id": 838,
+      "name": "E-City Ballers",
+      "coach": "Moore",
+      "division": "8th grade"
+    },
+    {
+      "id": 836,
+      "name": "Force Attack",
+      "coach": "Taylor",
+      "division": "8th grade"
+    },
+    {
+      "id": 837,
+      "name": "Maryland Playmakers",
+      "coach": "Jackson",
+      "division": "8th grade"
+    },
+    {
+      "id": 833,
+      "name": "Savage Eagles",
+      "coach": "Anderson",
+      "division": "8th grade"
+    },
+    {
+      "id": 835,
+      "name": "Team Glory",
+      "coach": "Thomas",
+      "division": "8th grade"
+    },
+    {
+      "id": 6149,
+      "name": "Cyclones  3rd",
+      "coach": "Glenn Nelson ",
+      "division": "3rd"
+    },
+    {
+      "id": 6147,
+      "name": "HC ELITE  Dreish 2nd",
+      "coach": "Frank Dreisch",
+      "division": "3rd"
+    },
+    {
+      "id": 6210,
+      "name": "Madison Bucs 3rd",
+      "coach": "Derrick",
+      "division": "3rd"
+    },
+    {
+      "id": 6146,
+      "name": "NOVA 94 FEET  2nd",
+      "coach": "BRYANT LEE",
+      "division": "3rd"
+    },
+    {
+      "id": 6148,
+      "name": "Sharks 3rd",
+      "coach": "David Crabtree",
+      "division": "3rd"
+    },
+    {
+      "id": 6145,
+      "name": "Team Rush (Chisolm) 2nd",
+      "coach": "Brian Chisolm",
+      "division": "3rd"
+    },
+    {
+      "id": 6157,
+      "name": "Baltimore Elite 5th",
+      "coach": "Brian Jackson",
+      "division": "5th Black"
+    },
+    {
+      "id": 6153,
+      "name": "FAME Gold 5th",
+      "coach": "Steve Troffkin",
+      "division": "5th Black"
+    },
+    {
+      "id": 6154,
+      "name": "Harundale Knights 5th",
+      "coach": "Michael Bender",
+      "division": "5th Black"
+    },
+    {
+      "id": 6160,
+      "name": "Laurel Lakers 5th",
+      "coach": "Maynard Murray",
+      "division": "5th Black"
+    },
+    {
+      "id": 6159,
+      "name": "Sharks 5th",
+      "coach": "Tookes",
+      "division": "5th Black"
+    },
+    {
+      "id": 6158,
+      "name": "WDBA 5th",
+      "coach": "Al Boggs",
+      "division": "5th Black"
+    },
+    {
+      "id": 6212,
+      "name": "Pikesville Panthers",
+      "coach": "Jamaal",
+      "division": "5th White"
+    },
+    {
+      "id": 6161,
+      "name": "Randallstown Running Rebels 5th",
+      "coach": "Charles Wilson 3rd ",
+      "division": "5th White"
+    },
+    {
+      "id": 6152,
+      "name": "Reisterstown Wolfpack 5th",
+      "coach": "Stephen Goldstein",
+      "division": "5th White"
+    },
+    {
+      "id": 6151,
+      "name": "Team Dedication 4th",
+      "coach": "Infinite Supreme",
+      "division": "5th White"
+    },
+    {
+      "id": 6150,
+      "name": "TEAM Severn Elite 5th",
+      "coach": "Coach",
+      "division": "5th White"
+    },
+    {
+      "id": 6156,
+      "name": "Team Ultimate 5th",
+      "coach": "Kosa So",
+      "division": "5th White"
+    },
+    {
+      "id": 6155,
+      "name": "Warriors 5th",
+      "coach": "Scott Obitts",
+      "division": "5th White"
+    },
+    {
+      "id": 6166,
+      "name": "Columbia Ravens 6th",
+      "coach": "John Miller",
+      "division": "6th Black"
+    },
+    {
+      "id": 6162,
+      "name": "FAME Gold 6th",
+      "coach": "Dana Harris",
+      "division": "6th Black"
+    },
+    {
+      "id": 6163,
+      "name": "HC Elite White 6th",
+      "coach": "James Stefan",
+      "division": "6th Black"
+    },
+    {
+      "id": 6172,
+      "name": "Pikesville Panthers 6th",
+      "coach": "Anthony Adams",
+      "division": "6th Black"
+    },
+    {
+      "id": 6171,
+      "name": "Virginia Hurricanes 6th",
+      "coach": "Jonathan Heslep",
+      "division": "6th Black"
+    },
+    {
+      "id": 6169,
+      "name": "FAME Burgundy 6th",
+      "coach": "Steve Troffkin",
+      "division": "6th White"
+    },
+    {
+      "id": 6164,
+      "name": "HC Elite Green 6th",
+      "coach": "Eddie OMalley",
+      "division": "6th White"
+    },
+    {
+      "id": 6170,
+      "name": "Laurel Lakers 6th",
+      "coach": "John Graham",
+      "division": "6th White"
+    },
+    {
+      "id": 6167,
+      "name": "Maryland Motion 6th",
+      "coach": "Larry mandelbaum",
+      "division": "6th White"
+    },
+    {
+      "id": 6165,
+      "name": "Team Dedication 6th",
+      "coach": "Don Carpenter",
+      "division": "6th White"
+    },
+    {
+      "id": 6168,
+      "name": "Westminster Travel 6th",
+      "coach": "Jeremy Snyder",
+      "division": "6th White"
+    },
+    {
+      "id": 6176,
+      "name": "BALT SUPREME  7th",
+      "coach": "RON ",
+      "division": "7th Black"
+    },
+    {
+      "id": 6177,
+      "name": "Cyclones A 7th",
+      "coach": "Joe Alendar",
+      "division": "7th Black"
+    },
+    {
+      "id": 6182,
+      "name": "HC Elite 7th",
+      "coach": "Steve Michelotti",
+      "division": "7th Black"
+    },
+    {
+      "id": 6175,
+      "name": "MADE Elite 7th",
+      "coach": "Jason Millison",
+      "division": "7th Black"
+    },
+    {
+      "id": 6179,
+      "name": "Maryland 3D 7th",
+      "coach": "Brian Bieman",
+      "division": "7th Black"
+    },
+    {
+      "id": 6173,
+      "name": "Nova 94 Feet, 7th",
+      "coach": "Bob Farkas",
+      "division": "7th Black"
+    },
+    {
+      "id": 6178,
+      "name": "Bolt 7th",
+      "coach": "Kevin Wyandt",
+      "division": "7th White"
+    },
+    {
+      "id": 6185,
+      "name": "Cyclones B 7th",
+      "coach": "Joe Alendar",
+      "division": "7th White"
+    },
+    {
+      "id": 6174,
+      "name": "Columbia Ravens 7th",
+      "coach": "Tim Swartz ",
+      "division": "7th White"
+    },
+    {
+      "id": 6181,
+      "name": "JPYO Sonics  7th",
+      "coach": "John Sellman Jr ",
+      "division": "7th White"
+    },
+    {
+      "id": 6183,
+      "name": "SMD Heat 7th",
+      "coach": "Coach Troy",
+      "division": "7th White"
+    },
+    {
+      "id": 6184,
+      "name": "Team Flight  7th",
+      "coach": "Rock Hetherington",
+      "division": "7th White"
+    },
+    {
+      "id": 6180,
+      "name": "WHC Force 7th",
+      "coach": "Percy Moore",
+      "division": "7th White"
+    },
+    {
+      "id": 6188,
+      "name": "Columbia Ravens 8th",
+      "coach": "Dan Paugh",
+      "division": "8th"
+    },
+    {
+      "id": 6192,
+      "name": "District Hoops  8th",
+      "coach": "",
+      "division": "8th"
+    },
+    {
+      "id": 6187,
+      "name": "Glenwood 8th",
+      "coach": "Bob Trawick",
+      "division": "8th"
+    },
+    {
+      "id": 6191,
+      "name": "HC Elite (Phillips) 8th",
+      "coach": "Bill Phillips",
+      "division": "8th"
+    },
+    {
+      "id": 6189,
+      "name": "Howard Unite Elite 8th",
+      "coach": "Ken Clark",
+      "division": "8th"
+    },
+    {
+      "id": 6186,
+      "name": "MD Playmakers - Red 8th",
+      "coach": "Desmin Wade",
+      "division": "8th"
+    },
+    {
+      "id": 6190,
+      "name": "Team Dedication 8th",
+      "coach": "Tim Hale",
+      "division": "8th"
+    },
+    {
+      "id": 6197,
+      "name": "HC Elite Tringali 10th",
+      "coach": "Chris Tringali",
+      "division": "HS 10th Black"
+    },
+    {
+      "id": 6200,
+      "name": "Heat Wave 10th",
+      "coach": "Leon Thornton Jr.",
+      "division": "HS 10th Black"
+    },
+    {
+      "id": 6198,
+      "name": "Loudoun Xtreme Force 10th",
+      "coach": "Mike Lohneis",
+      "division": "HS 10th Black"
+    },
+    {
+      "id": 6199,
+      "name": "Millersville Blue Devils 10th",
+      "coach": "Owen Gaither",
+      "division": "HS 10th Black"
+    },
+    {
+      "id": 6201,
+      "name": "URBANA ELITE 10th",
+      "coach": "JIM NOLAN",
+      "division": "HS 10th Black"
+    },
+    {
+      "id": 6203,
+      "name": "Carroll Bball Club- Selby 10th",
+      "coach": "Fred Selby",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6193,
+      "name": "Columbia Ravens 9th",
+      "coach": "Jeff Cross",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6202,
+      "name": "HC Elite - Thai 10th",
+      "coach": "gary thai",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6194,
+      "name": "HC Elite 9th",
+      "coach": "Corey Eudell",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6196,
+      "name": "Hoopmasters 10th",
+      "coach": "Scott Cole",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6195,
+      "name": "Team Dedication 9th",
+      "coach": "Dennis Kirkland",
+      "division": "HS 10th White"
+    },
+    {
+      "id": 6205,
+      "name": "Columbia Ravens 11th",
+      "coach": "Dan Ingersol",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6204,
+      "name": "HC Elite Green 11th",
+      "coach": "Mike Hightower",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6207,
+      "name": "HC Elite White 11th",
+      "coach": "James Stefan",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6211,
+      "name": "Hebron Vikings",
+      "coach": "Dan Smith",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6208,
+      "name": "Lake Shore",
+      "coach": "Brian Brady",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6206,
+      "name": "PDE Running Suns 11th",
+      "coach": "Bryan Aybar",
+      "division": "HS 11th"
+    },
+    {
+      "id": 6209,
+      "name": "Red Branch Warriors",
+      "coach": "Aubrey A Adams",
+      "division": "HS 11th"
+    }
+  ],
   "tournaments": [
     {
       "id": "3dd50aaf-6b03-4497-b074-d81703f07ee8",
