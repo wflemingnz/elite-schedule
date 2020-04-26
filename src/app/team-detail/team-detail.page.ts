@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EliteApiService } from '../services/elite-api.service';
-import { Observable, BehaviorSubject, concat } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import {
+  Observable,
+  BehaviorSubject,
+  concat,
+  empty,
+  combineLatest,
+} from 'rxjs';
+import { map, switchMap, startWith } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Game } from '../models/game';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -50,9 +56,13 @@ export class TeamDetailPage implements OnInit {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.teamId = +this.route.snapshot.paramMap.get('teamId');
     this.team$ = this.apiService.getTeam(this.tournamentId, this.teamId);
-    this.teamIsFollowed$ = concat(
+    this.teamIsFollowed$ = combineLatest([
       this.userSettings.isTeamFollowed(this.teamId),
-      this.teamIsFollowedSubject
+      this.teamIsFollowedSubject,
+    ]).pipe(
+      map(([userSettingValue, subjectValue]) =>
+        subjectValue != null ? subjectValue : userSettingValue
+      )
     );
 
     this.teamStanding$ = this.apiService.getTeamStanding(
