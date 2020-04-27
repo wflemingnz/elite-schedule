@@ -137,4 +137,8 @@ export class TeamDetailPage implements OnInit {
 
     toast.present();
   }
+
+  refresh(event) {
+    // TODO
+  }
 }
