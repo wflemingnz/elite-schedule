@@ -3,65 +3,63 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-group
-      *ngFor="let divisionStandings of (standingsByDivision$ | async)"
+  <ion-virtual-scroll
+    [items]="standingsOrderedByDivision$ | async"
+    approxItemHeight="132px"
+    [headerFn]="getHeader"
+    ><ion-item-divider color="secondary" *virtualHeader="let header"
+      >{{header}}</ion-item-divider
     >
-      <ion-item-divider color="secondary"
-        >{{ divisionStandings.division }}
-      </ion-item-divider>
-
-      <ion-item *ngFor="let standing of divisionStandings.standings"
-        ><ion-grid
-          ><ion-row
-            ><ion-col
-              ><ion-text color="primary"
-                ><h2>{{ standing.teamName }}</h2></ion-text
-              ></ion-col
-            ></ion-row
-          >
-          <ion-row
-            ><ion-col>
-              <h4>Wins</h4>
-            </ion-col>
-            <ion-col>
-              <h4>Losses</h4>
-            </ion-col>
-            <ion-col>
-              <h4>%</h4>
-            </ion-col>
-            <ion-col>
-              <h4>PF</h4>
-            </ion-col>
-            <ion-col>
-              <h4>PA</h4>
-            </ion-col>
-            <ion-col>
-              <h4>Diff</h4>
-            </ion-col></ion-row
-          >
-          <ion-row>
-            <ion-col>
-              <h5>{{ standing.wins }}</h5>
-            </ion-col>
-            <ion-col>
-              <h5>{{ standing.losses }}</h5>
-            </ion-col>
-            <ion-col>
-              <h5>{{ standing.winningPct }}</h5>
-            </ion-col>
-            <ion-col>
-              <h5>{{ standing.pointsFor }}</h5>
-            </ion-col>
-            <ion-col>
-              <h5>{{ standing.pointsAgainst }}</h5>
-            </ion-col>
-            <ion-col>
-              <h5>{{ standing.pointsDiff }}</h5>
-            </ion-col>
-          </ion-row>
-        </ion-grid></ion-item
-      >
-    </ion-item-group>
-  </ion-list>
+    <ion-item *virtualItem="let standing">
+      <ion-grid
+        ><ion-row
+          ><ion-col
+            ><ion-text color="primary"
+              ><h2>{{ standing.teamName }}</h2></ion-text
+            ></ion-col
+          ></ion-row
+        >
+        <ion-row
+          ><ion-col>
+            <h4>Wins</h4>
+          </ion-col>
+          <ion-col>
+            <h4>Losses</h4>
+          </ion-col>
+          <ion-col>
+            <h4>%</h4>
+          </ion-col>
+          <ion-col>
+            <h4>PF</h4>
+          </ion-col>
+          <ion-col>
+            <h4>PA</h4>
+          </ion-col>
+          <ion-col>
+            <h4>Diff</h4>
+          </ion-col></ion-row
+        >
+        <ion-row>
+          <ion-col>
+            <h5>{{ standing.wins }}</h5>
+          </ion-col>
+          <ion-col>
+            <h5>{{ standing.losses }}</h5>
+          </ion-col>
+          <ion-col>
+            <h5>{{ standing.winningPct }}</h5>
+          </ion-col>
+          <ion-col>
+            <h5>{{ standing.pointsFor }}</h5>
+          </ion-col>
+          <ion-col>
+            <h5>{{ standing.pointsAgainst }}</h5>
+          </ion-col>
+          <ion-col>
+            <h5>{{ standing.pointsDiff }}</h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid></ion-item
+    ></ion-virtual-scroll
+  >
 </ion-content>

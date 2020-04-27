@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, zip, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EliteApiService } from '../services/elite-api.service';
-import { flatMap, groupBy, mergeMap, toArray, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { TeamStandingData } from '../models/team-standing';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-standings',
@@ -12,7 +13,7 @@ import { TeamStandingData } from '../models/team-standing';
 })
 export class StandingsPage implements OnInit {
   standings$: Observable<TeamStandingData[]>;
-  standingsByDivision$: Observable<any>;
+  standingsOrderedByDivision$: Observable<TeamStandingData[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,15 +23,22 @@ export class StandingsPage implements OnInit {
   ngOnInit() {
     const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.standings$ = this.apiService.getTournamentTeamStandings(tournamentId);
-    this.standingsByDivision$ = this.standings$.pipe(
-      flatMap((standings) => standings),
-      groupBy((standing) => standing.division),
-      mergeMap((group) => zip(of(group.key), group.pipe(toArray()))),
-      map((groupsArray) => ({
-        division: groupsArray[0],
-        standings: groupsArray[1],
-      })),
-      toArray()
+    this.standingsOrderedByDivision$ = this.standings$.pipe(
+      map((standings) =>
+        _.sortBy(standings, (s: TeamStandingData) => s.division)
+      )
     );
+  }
+
+  getHeader(
+    standing: TeamStandingData,
+    index: number,
+    standings: TeamStandingData[]
+  ) {
+    if (index === 0 || standing.division !== standings[index - 1].division) {
+      return standing.division;
+    } else {
+      return null;
+    }
   }
 }
