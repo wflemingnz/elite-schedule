@@ -5,11 +5,19 @@
     </ion-buttons>
     <ion-title>Teams</ion-title>
   </ion-toolbar>
+  <ion-toolbar
+    ><ion-searchbar
+      placeholder="Search"
+      (ionChange)="filterTeams($event)"
+    ></ion-searchbar
+  ></ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-group *ngFor="let divisionTeams of teamsByDivision$ | async">
+    <ion-item-group
+      *ngFor="let divisionTeams of filteredTeamsByDivision$ | async"
+    >
       <ion-item-divider color="secondary">
         {{ divisionTeams.division }}
       </ion-item-divider>
