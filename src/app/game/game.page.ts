@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EliteApiService } from '../services/elite-api.service';
+import { GameData } from '../models/game';
 
 @Component({
   selector: 'app-game',
@@ -10,7 +11,7 @@ import { EliteApiService } from '../services/elite-api.service';
 })
 export class GamePage implements OnInit {
   tournamentId: string;
-  game$: Observable<any>;
+  game$: Observable<GameData>;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,5 +22,9 @@ export class GamePage implements OnInit {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     const gameId = +this.route.snapshot.paramMap.get('gameId');
     this.game$ = this.apiService.getGame(this.tournamentId, gameId);
+  }
+
+  getScoreColor(team1Score: number, team2Score: number) {
+    return team1Score > team2Score ? 'success' : 'danger';
   }
 }
