@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { EliteApiService } from '../services/elite-api.service';
-import { map } from 'rxjs/operators';
+import { map, flatMap, filter, toArray, switchMap } from 'rxjs/operators';
 import { TeamStandingData } from '../models/team-standing';
 import * as _ from 'lodash';
 
@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 export class StandingsPage implements OnInit {
   standings$: Observable<TeamStandingData[]>;
   standingsOrderedByDivision$: Observable<TeamStandingData[]>;
+  filterStandingsSubject = new BehaviorSubject<string>('');
 
   constructor(
     private route: ActivatedRoute,
@@ -23,9 +24,18 @@ export class StandingsPage implements OnInit {
   ngOnInit() {
     const tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.standings$ = this.apiService.getTournamentTeamStandings(tournamentId);
-    this.standingsOrderedByDivision$ = this.standings$.pipe(
-      map((standings) =>
-        _.sortBy(standings, (s: TeamStandingData) => s.division)
+    this.standingsOrderedByDivision$ = this.filterStandingsSubject.pipe(
+      switchMap((filterMode) =>
+        this.standings$.pipe(
+          flatMap((standings) => standings),
+          filter((standing) =>
+            this.showStandingBasedOnFilter(standing, filterMode)
+          ),
+          toArray(),
+          map((standings) =>
+            _.sortBy(standings, (s: TeamStandingData) => s.division)
+          )
+        )
       )
     );
   }
@@ -40,5 +50,13 @@ export class StandingsPage implements OnInit {
     } else {
       return null;
     }
+  }
+
+  filterStandings($event) {
+    this.filterStandingsSubject.next($event.target.value);
+  }
+
+  showStandingBasedOnFilter(standing: TeamStandingData, filterMode: string) {
+    return filterMode === 'all' || standing.division === '5th White';
   }
 }

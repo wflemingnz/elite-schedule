@@ -1,5 +1,11 @@
 <ion-header>
-  <ion-toolbar color="primary"> </ion-toolbar>
+  <ion-toolbar></ion-toolbar>
+  <ion-toolbar color="secondary"
+    ><ion-segment (ionChange)="filterStandings($event)"
+      ><ion-segment-button value="division">Division</ion-segment-button
+      ><ion-segment-button value="all">All</ion-segment-button></ion-segment
+    ></ion-toolbar
+  >
 </ion-header>
 
 <ion-content>
