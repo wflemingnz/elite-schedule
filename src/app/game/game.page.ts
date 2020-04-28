@@ -24,7 +24,11 @@ export class GamePage implements OnInit {
     this.game$ = this.apiService.getGame(this.tournamentId, gameId);
   }
 
-  getScoreColor(team1Score: number, team2Score: number) {
-    return team1Score > team2Score ? 'success' : 'danger';
+  getScoreColor(team1Score: string, team2Score: string) {
+    return +team1Score > +team2Score ? 'success' : 'danger';
   }
+
+  goToMap() {}
+
+  goToDirections() {}
 }
