@@ -11,6 +11,7 @@ import { GameData } from '../models/game';
 })
 export class GamePage implements OnInit {
   tournamentId: string;
+  gameId: number;
   game$: Observable<GameData>;
 
   constructor(
@@ -20,8 +21,8 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
-    const gameId = +this.route.snapshot.paramMap.get('gameId');
-    this.game$ = this.apiService.getGame(this.tournamentId, gameId);
+    this.gameId = +this.route.snapshot.paramMap.get('gameId');
+    this.game$ = this.apiService.getGame(this.tournamentId, this.gameId);
   }
 
   getScoreColor(score1: string, score2: string) {

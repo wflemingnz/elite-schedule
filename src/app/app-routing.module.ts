@@ -39,11 +39,11 @@ const routes: Routes = [
     path: 'tournaments/:tournamentId/team-home',
     loadChildren: () =>
       import('./team-home/team-home.module').then((m) => m.TeamHomePageModule),
-  },  {
-    path: 'map',
-    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
   },
-
+  {
+    path: 'tournaments/:tournamentId/game/:gameId/map',
+    loadChildren: () => import('./map/map.module').then((m) => m.MapPageModule),
+  },
 ];
 
 @NgModule({
