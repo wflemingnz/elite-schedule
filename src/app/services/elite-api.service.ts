@@ -5,6 +5,7 @@ import { GameData, Game } from '../models/game';
 import { TeamData } from '../models/team';
 import { TeamStandingData } from '../models/team-standing';
 import { TournamentData } from '../models/tournament';
+import { LocationData } from '../models/location';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +38,12 @@ export class EliteApiService {
   getTournamentGames(tournamentId: string) {
     return this.http.get<GameData[]>(
       `${this.baseUrl}/tournaments-data/${tournamentId}/games.json`
+    );
+  }
+
+  getTournamentLocations(tournamentId: string) {
+    return this.http.get<LocationData[]>(
+      `${this.baseUrl}/tournaments-data/${tournamentId}/locations.json`
     );
   }
 
