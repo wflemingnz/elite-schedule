@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
       url: '/tournaments',
       icon: 'medal',
     },
+    {
+      title: 'Vibration',
+      url: '/vibration',
+      icon: 'pulse',
+    },
   ];
   constructor(
     private platform: Platform,

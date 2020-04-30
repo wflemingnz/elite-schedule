@@ -43,7 +43,11 @@ const routes: Routes = [
   {
     path: 'tournaments/:tournamentId/game/:gameId/map',
     loadChildren: () => import('./map/map.module').then((m) => m.MapPageModule),
+  },  {
+    path: 'vibration',
+    loadChildren: () => import('./vibration/vibration.module').then( m => m.VibrationPageModule)
   },
+
 ];
 
 @NgModule({
