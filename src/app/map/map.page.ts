@@ -17,6 +17,7 @@ export class MapPage implements OnInit {
   game$: Observable<GameData>;
   map: any = {};
   location$: Observable<LocationData>;
+  zoom = 12;
 
   constructor(
     private route: ActivatedRoute,
