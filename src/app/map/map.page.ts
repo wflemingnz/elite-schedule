@@ -6,6 +6,8 @@ import { EliteApiService } from '../services/elite-api.service';
 import { LocationData } from '../models/location';
 import { switchMap, map } from 'rxjs/operators';
 
+declare var window: any;
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
@@ -36,5 +38,9 @@ export class MapPage implements OnInit {
           .pipe(map((locations) => locations[game.locationId]))
       )
     );
+  }
+
+  goToDirections(location: LocationData) {
+    window.location = `geo:${location.latitude},${location.longitude};u=35`;
   }
 }
