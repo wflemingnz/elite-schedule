@@ -29,7 +29,5 @@ export class GamePage implements OnInit {
     return +score1 > +score2 ? 'success' : 'danger';
   }
 
-  goToMap() {}
-
   goToDirections() {}
 }
