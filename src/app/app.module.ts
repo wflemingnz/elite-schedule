@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,9 +20,6 @@ import { AgmCoreModule } from '@agm/core';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAw1OHG-JtxLdJylsr7P6nVKQFiDIeysbE',
-    }),
   ],
   providers: [
     StatusBar,

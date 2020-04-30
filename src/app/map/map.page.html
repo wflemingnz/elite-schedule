@@ -1,9 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>map</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Map</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ng-container *ngIf="(location$ | async) as location"
+    ><agm-map
+      [latitude]="location.latitude"
+      [longitude]="location.longitude"
+    ></agm-map
+  ></ng-container>
 </ion-content>

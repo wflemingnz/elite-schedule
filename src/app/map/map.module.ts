@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MapPageRoutingModule } from './map-routing.module';
-
+import { AgmCoreModule } from '@agm/core';
 import { MapPage } from './map.page';
 
 @NgModule({
@@ -13,8 +13,11 @@ import { MapPage } from './map.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MapPageRoutingModule
+    MapPageRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAw1OHG-JtxLdJylsr7P6nVKQFiDIeysbE',
+    }),
   ],
-  declarations: [MapPage]
+  declarations: [MapPage],
 })
 export class MapPageModule {}
