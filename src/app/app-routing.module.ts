@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'vibration',
     loadChildren: () => import('./vibration/vibration.module').then( m => m.VibrationPageModule)
   },
+  {
+    path: 'geolocation',
+    loadChildren: () => import('./geolocation/geolocation.module').then( m => m.GeolocationPageModule)
+  },
 
 ];
 

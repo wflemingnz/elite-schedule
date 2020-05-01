@@ -27,6 +27,11 @@ export class AppComponent implements OnInit {
       url: '/vibration',
       icon: 'pulse',
     },
+    {
+      title: 'Geolocation',
+      url: '/geolocation',
+      icon: 'navigate',
+    },
   ];
   constructor(
     private platform: Platform,

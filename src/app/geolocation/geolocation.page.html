@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Geolocation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/" routerDirection="backward"
+        ><ion-icon name="home"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-button color="secondary" (click)="getLocation()"
+        >Get Location</ion-button
+      ></ion-col
+    >
+  </ion-row>
+  <ion-row class="ion-align-items-baseline">
+    <ion-col size="6" class="ion-text-right"><h4>Latitude</h4></ion-col>
+    <ion-col size="6" class="ion-txt-left"
+      ><h2>{{latitude | number:'1.5-5'}}</h2></ion-col
+    ></ion-row
+  >
+  <ion-row class="ion-align-items-baseline">
+    <ion-col size="6" class="ion-text-right"><h4>Longitude</h4></ion-col>
+    <ion-col size="6" class="ion-text-left"
+      ><h2>{{longitude | number:'1.5-5'}}</h2></ion-col
+    ></ion-row
+  >
+</ion-content>
