@@ -32,6 +32,11 @@ export class AppComponent implements OnInit {
       url: '/geolocation',
       icon: 'navigate',
     },
+    {
+      title: 'Camera',
+      url: '/camera',
+      icon: 'camera',
+    },
   ];
   constructor(
     private platform: Platform,
